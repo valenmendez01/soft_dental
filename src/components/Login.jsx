@@ -29,7 +29,7 @@ export const Login = ({ user }) => {
   const handlePasswordChange = (event) => setPassword(event.target.value);
 
   if (user) {
-    return <Navigate to="/privado"></Navigate>;
+    return <Navigate to="/home"></Navigate>;
   }
 
   return (

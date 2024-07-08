@@ -4,7 +4,7 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./credenciales";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
 import { Login } from "./components/Login";
-import { Privado } from "./components/Privado";
+import Home from "./components/Home";
 
 import "./App.css";
 import { useEffect, useState } from "react";
@@ -35,10 +35,10 @@ function App() {
       <Routes>
         <Route index path="/" element={<Login user={user}></Login>}></Route>
         <Route
-          path="/privado"
+          path="/home"
           element={
             <ProtectedRoute user={user}>
-              <Privado></Privado>
+              <Home correoUsuario={user?.email} />
             </ProtectedRoute>
           }
         ></Route>
@@ -48,4 +48,3 @@ function App() {
 }
 
 export default App;
-
