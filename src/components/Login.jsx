@@ -1,22 +1,36 @@
-import imagen from '../assets/logo_login.jpg'
-import appFirebase from '../credenciales'
-import {getAuth, signInWithEmailAndPassword} from 'firebase/auth'
-const auth = getAuth(appFirebase)
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
+import {
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from '../credenciales';
+import imagen from '../assets/logo_login.jpg';
 
-const Login = () => {
+// eslint-disable-next-line react/prop-types
+export const Login = ({ user }) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const functAutenticacion = async(e) =>{
-    e.preventDefault();
-    const correo = e.target.email.value
-    const contraseña = e.target.passw.value
+  const handleSignIn = () => {
+    if (!email || !password) return;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode, errorMessage);
+      });
+  };
 
-    try {
-      await signInWithEmailAndPassword(auth, correo, contraseña)
-    } catch (error) {
-      alert("Email o contraseña incorrectos")
-    }
-  
-}
+  const handleEmailChange = (event) => setEmail(event.target.value);
+  const handlePasswordChange = (event) => setPassword(event.target.value);
+
+  if (user) {
+    return <Navigate to="/privado"></Navigate>;
+  }
 
   return (
     <div className="container">
@@ -25,10 +39,10 @@ const Login = () => {
           <div className="padre">
             <div className="card card-body">
               <h2 className='bienvenido'>Bienvenido!</h2>
-              <form onSubmit={functAutenticacion}>
-                <input type='text' placeholder='Email' className='caja-texto' id='email'></input>
-                <input type='password' placeholder='Contraseña' className='caja-texto' id='passw'></input>
-                <button className='btn-form'>Ingresa</button>
+              <form>
+                <input type='text' placeholder='Email' className='caja-texto' id='email' onChange={handleEmailChange}></input>
+                <input type='password' placeholder='Contraseña' className='caja-texto' id='password' onChange={handlePasswordChange}></input>
+                <button type="button" className='btn-form' onClick={handleSignIn}>Ingresar</button>
               </form>
             </div>
           </div>
@@ -38,7 +52,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Login
+

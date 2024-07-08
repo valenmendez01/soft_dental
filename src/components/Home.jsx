@@ -15,6 +15,12 @@ const Home = ({ correoUsuario }) => {
   const [collapsed, setCollapsed] = useState(false);
   const { token: { colorBgContainer } } = theme.useToken();
 
+  const handleSignOut = () => {
+    signOut(auth)
+      .then(() => console.log("Sign Out"))
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div>
       <Layout>
@@ -36,7 +42,7 @@ const Home = ({ correoUsuario }) => {
               onClick={() => setCollapsed(!collapsed)}
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             />
-            <h2>Bienvenido {correoUsuario}<button onClick={() => signOut(auth)}>-Log Out</button></h2>
+            <h2>Bienvenido {correoUsuario}<button onClick={handleSignOut}>-Log Out</button></h2>
           </Header>
         </Layout>
       </Layout>
