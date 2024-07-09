@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { Menu } from "antd";
 import { HomeOutlined, CalendarOutlined, BarsOutlined, UsergroupAddOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
 
-const MenuList = () => {
+const MenuList = ({ onSelect }) => {
   return (
-    <Menu theme='dark' mode="inline" className="menu-bar"> 
+    <Menu theme='dark' mode="inline" className="menu-bar" onClick={onSelect}> 
       <Menu.Item key="inicio" icon={<HomeOutlined />}>
         Inicio
       </Menu.Item>
