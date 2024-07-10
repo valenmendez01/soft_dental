@@ -1,13 +1,19 @@
 import { useState } from "react"
-
+import Axios from "axios"
 
 const AñadirPaciente = () => {
   const [nombre, setNombre] = useState("")
   const [edad, setEdad] = useState(0)
   const [dni, setDni] = useState(0)
 
-  const mostrarDtos = () =>{
-    alert(nombre);
+  const add = () =>{
+    Axios.post("http://localhost:3001/create", {
+      nombre:nombre,
+      edad:edad, 
+      dni:dni
+    }).then(()=>{
+      alert("Paciente registrado");
+    });
   }
 
   return (
@@ -34,7 +40,7 @@ const AñadirPaciente = () => {
           }}
           type="number"></input>
         </label>
-        <button onClick={mostrarDtos}>Registrar</button>
+        <button onClick={add}>Registrar</button>
       </div>
     </div>
   )
