@@ -118,7 +118,7 @@ const AñadirPaciente = () => {
   }, []);
 
   return (
-    <div className="container">
+    <div className="container_pte">
       <div className="card text-center">
         <div className="card-header">
           GESTION DE PACIENTES

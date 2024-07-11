@@ -1,16 +1,13 @@
 import { Menu } from "antd";
-import { HomeOutlined, CalendarOutlined, BarsOutlined, UsergroupAddOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
-import { Link } from "react-router-dom";
+import { CalendarOutlined, BarsOutlined, UsergroupAddOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
+import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 
 // eslint-disable-next-line react/prop-types
 const MenuList = ({ onSelect, collapsed }) => {
+  const location = useLocation();
+  
   const items = [
-    {
-      key: 'inicio',
-      icon: <HomeOutlined />,
-      label: <Link to="/home" className="nav-link">Inicio</Link>,
-    },
     {
       key: 'agenda',
       icon: <CalendarOutlined />,
@@ -58,10 +55,24 @@ const MenuList = ({ onSelect, collapsed }) => {
     },
   ];
 
+  // Determinar el ítem seleccionado por defecto basado en la URL actual
+  let defaultSelectedKey = 'agenda';
+  if (location.pathname === '/agenda') {
+    defaultSelectedKey = 'agenda';
+  } else if (location.pathname.startsWith('/tareas')) {
+    defaultSelectedKey = 'tareas';
+  } else if (location.pathname === '/pacientes') {
+    defaultSelectedKey = 'pacientes';
+  } else if (location.pathname.startsWith('/odontologos')) {
+    defaultSelectedKey = 'odontologos';
+  } else if (location.pathname === '/configuracion') {
+    defaultSelectedKey = 'configuracion';
+  }
+
   return (
     <div>
       <Logo collapsed={collapsed} />
-      <Menu theme='dark' mode="inline" className="menu-bar" onClick={onSelect} items={items} />
+      <Menu theme='dark' mode="inline" className="menu-bar" onClick={onSelect} defaultSelectedKeys={[defaultSelectedKey]} items={items} />
     </div>
   );
 };

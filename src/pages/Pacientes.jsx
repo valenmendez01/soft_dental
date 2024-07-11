@@ -1,7 +1,14 @@
 
+import AñadirPacientes from '../components/RegistroPacientes/AñadirPaciente'
+
+import CardPacientes from '../components/RegistroPacientes/CardPacientes'
+
 const Pacientes = () => {
   return (
-    <div>Pacientes</div>
+    <div className='container-fluid p-5 vh-100'>
+      {/* <AñadirPacientes /> */}
+      <CardPacientes />
+    </div>
   )
 }
 
