@@ -88,7 +88,7 @@ const AñadirPaciente = () => {
         });
       });
   }
-  });
+  })}
 
   const limpiarCampos = () =>{
     setNombre("");
@@ -172,7 +172,7 @@ const AñadirPaciente = () => {
         </thead>
         <tbody>
         {
-          pacientesList.map((val,key)=>{
+          pacientesList.map((val)=>{
             return  <tr key={val.id}>
                       <th>{val.id}</th>
                       <td>{val.nombre}</td>
@@ -198,7 +198,6 @@ const AñadirPaciente = () => {
         </tbody>
       </table>
     </div>
-  )
-}
+  )}
 
 export default AñadirPaciente

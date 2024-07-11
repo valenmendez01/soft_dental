@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 // se corre con node index.jsx
 
 const express = require("express");
@@ -50,7 +51,7 @@ app.put("/update", (req,res)=>{
   const edad = req.body.edad;
   const dni = req.body.dni;
 
-  db.query('UPDATE registro_pacientes SET nombre=?,edad=?,dni=?) WHERE id=?', [nombre, edad, dni, id],
+  db.query('UPDATE registro_pacientes SET nombre=?,edad=?,dni=? WHERE id=?', [nombre, edad, dni, id],
     (err,result)=>{
       if(err){
         console.log(err)

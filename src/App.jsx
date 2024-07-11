@@ -3,11 +3,11 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "./credenciales";
 import { ProtectedRoute } from "./components/utils/ProtectedRoute";
-import { Login } from "./components/Login";
-import Home from "./components/Home";
+import { Login } from "./pages/Login";
 
 import "./App.css";
 import { useEffect, useState } from "react";
+import Layout from './Layout/Layout';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -32,17 +32,18 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route index path="/" element={<Login user={user}></Login>}></Route>
-        <Route
-          path="/home"
-          element={
-            <ProtectedRoute user={user}>
-              <Home correoUsuario={user?.email} />
-            </ProtectedRoute>
-          }
-        ></Route>
-      </Routes>
+      <div className="App">
+        <Routes>
+          {/* unauthorized route */}
+          <Route index path="/" element={<Login user={user} />} />
+          <Route path="/login" element={<Login user={user}/>} />
+
+          {/* ProtectedRoutes */}
+          <Route element={<ProtectedRoute user={user} />}>
+            <Route path="*" element={<Layout />} />
+          </Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }
