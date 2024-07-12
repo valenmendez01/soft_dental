@@ -1,42 +1,77 @@
 
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, SelectItem, Select, DatePicker} from "@nextui-org/react";
+import {Input} from "@nextui-org/react";
 
 const ModalForm = () => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
+  const sexos = [
+    {key: "masculino", label: "Masculino"},
+    {key: "femenino", label: "Femenino"}
+  ];
+
   return (
     <>
-      <Button onPress={onOpen}>Agregar nuevo paciente</Button>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true}>
+      <Button className="w-25" color="success" variant="flat" onPress={onOpen}>Agregar nuevo paciente</Button>
+      <Modal size='3xl' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} backdrop="blur">
         <ModalContent>
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1">Ingrese los datos del nuevo paciente</ModalHeader>
               <ModalBody>
-                <p> 
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Nullam pulvinar risus non risus hendrerit venenatis.
-                  Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                </p>
-                <p>
-                  Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                  dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                  Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                  Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                  proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                </p>
+                <div className="w-full flex flex-col gap-4">
+                    <div className="flex flex-row w-full md:flex-nowrap mb-6 md:mb-0 gap-4">
+                      <Input
+                        key='inside'
+                        type="text"
+                        label="Nombre"
+                        labelPlacement='inside'
+                      />
+                      <Input
+                        key='inside'
+                        type="email"
+                        label="Apellido"
+                        labelPlacement='inside'
+                      />
+                    </div>
+                </div>
+                <div className="w-full flex flex-col gap-4">
+                    <div className="flex flex-row w-full md:flex-nowrap mb-6 md:mb-0 gap-4">
+                      <DatePicker label="Fecha de nacimiento" />
+                      <Select 
+                        label="Sexo"  
+                      >
+                        {sexos.map((sexo) => (
+                          <SelectItem key={sexo.key}>
+                            {sexo.label}
+                          </SelectItem>
+                        ))}
+                      </Select>
+                    </div>
+                </div>
+                <div className="w-full flex flex-col gap-4">
+                    <div className="flex flex-row w-full md:flex-nowrap mb-6 md:mb-0 gap-4">
+                      <Input
+                        key='inside'
+                        type="number"
+                        label="DNI"
+                        labelPlacement='inside'
+                      />
+                      <Input
+                        key='inside'
+                        type="number"
+                        label="Celular"
+                        labelPlacement='inside'
+                      />
+                    </div>
+                </div>
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onPress={onClose}>
-                  Close
+                  Cerrar
                 </Button>
                 <Button color="primary" onPress={onClose}>
-                  Action
+                  Guardar
                 </Button>
               </ModalFooter>
             </>
