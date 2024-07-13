@@ -1,6 +1,7 @@
 
 import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure, SelectItem, Select, DatePicker} from "@nextui-org/react";
 import {Input} from "@nextui-org/react";
+import { PlusIcon } from "./TableRegistrosPacientes/PlusIcon";
 
 const ModalForm = () => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -12,7 +13,7 @@ const ModalForm = () => {
 
   return (
     <>
-      <Button className="w-25" color="success" variant="flat" onPress={onOpen}>Agregar nuevo paciente</Button>
+      <Button color="success" variant="flat" onPress={onOpen} endContent={<PlusIcon />}>Agregar nuevo paciente</Button>
       <Modal size='3xl' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} backdrop="blur">
         <ModalContent>
           {(onClose) => (

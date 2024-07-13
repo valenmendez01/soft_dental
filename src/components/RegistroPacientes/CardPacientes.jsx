@@ -1,9 +1,7 @@
 
-import {Card, CardHeader, CardBody, CardFooter, Divider, Input, ButtonGroup, Button } from "@nextui-org/react";
-import ModalForm from './ModalForm'
-import Paginacion from './Paginacion'
-import { SearchIcon } from "../Header/SearchIcon";
-import TableRegistrosPacientes from "./TableRegistrosPacientes/TableRegistrosPacientes";
+import {Card, CardHeader, CardBody, CardFooter, Divider, ButtonGroup, Button } from "@nextui-org/react";
+
+import TableRegistros from "./TableRegistrosPacientes/TableRegistros"
 
 const CardPacientes = () => {
   return (
@@ -11,40 +9,8 @@ const CardPacientes = () => {
       <CardHeader className="flex align-middle justify-between">
         <div>
           <p className="text-xl m-2">Registro de pacientes</p>
-          <div className="mt-4">
-            <Input
-              label=""
-              isClearable
-              radius="lg"
-              classNames={{
-                label: "text-black/50 dark:text-white/90",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-black/50 dark:placeholder:text-black/60",
-                ],
-                innerWrapper: "bg-transparent",
-                inputWrapper: [
-                  "bg-default-200/50",
-                  "dark:bg-default/60",
-                  "backdrop-blur-xl",
-                  "backdrop-saturate-200",
-                  "hover:bg-default-200/70",
-                  "dark:hover:bg-default/70",
-                  "group-data-[focus=true]:bg-default-200/50",
-                  "dark:group-data-[focus=true]:bg-default/60",
-                  "!cursor-text",
-                ],
-              }}
-              placeholder="Buscar paciente..."
-              startContent={
-                <SearchIcon className="text-black/50 mb-0.5 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
-              }
-            />
-          </div>
         </div>
         <div className="flex flex-col mt-4 items-end">
-            <ModalForm />
             <ButtonGroup className="mt-4">
               <Button variant="flat" isIconOnly size="sm">A</Button>
               <Button variant="flat" isIconOnly size="sm">B</Button>
@@ -77,11 +43,10 @@ const CardPacientes = () => {
       </CardHeader>
       <Divider/>
       <CardBody>
-        <TableRegistrosPacientes />
+        <TableRegistros />
       </CardBody>
       <Divider/>
       <CardFooter>
-        <Paginacion />
       </CardFooter>
     </Card>
   );
