@@ -1,5 +1,4 @@
 
-import AñadirPacientes from '../components/RegistroPacientes/AñadirPaciente'
 
 import CardPacientes from '../components/RegistroPacientes/CardPacientes'
 
