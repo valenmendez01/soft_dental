@@ -9,6 +9,7 @@ const cors = require("cors");
 app.use(cors());
 app.use(express.json());
 
+// Conectar a la base de datos
 const db = mysql.createConnection({
   host:"localhost",
   user:"root",
@@ -16,13 +17,18 @@ const db = mysql.createConnection({
   database:"soft_dental_database"
 })
 
-// Cuando se haga la consulta, y obtengamos una respuesta:
+// Insertar datos desde el formulario del front
 app.post("/create", (req,res)=>{
+  // Cuando se haga la consulta (req), y obtengamos una respuesta (res):
   const nombre = req.body.nombre;
-  const edad = req.body.edad;
+  const apellido = req.body.apellido;
+  const nacimiento = req.body.nacimiento;
+  const sexo = req.body.sexo;
   const dni = req.body.dni;
+  const celular = req.body.celular;
 
-  db.query('INSERT INTO registro_pacientes(nombre,edad,dni) VALUES(?,?,?)', [nombre, edad, dni],
+  // Query para hacer el envio de los datos a las const anteriores: 
+  db.query('INSERT INTO registro_pacientes(nombre,apellido,nacimiento,sexo,dni,celular) VALUES(?,?,?,?,?,?)', [nombre, apellido, nacimiento, sexo, dni, celular],
     (err,result)=>{
       if(err){
         console.log(err)
@@ -33,6 +39,7 @@ app.post("/create", (req,res)=>{
   );
 });
 
+// Query para listar los datos de la base de datos al front
 app.get("/pacientes", (req,res)=>{
   db.query('SELECT * FROM registro_pacientes',
     (err,result)=>{
@@ -50,8 +57,9 @@ app.put("/update", (req,res)=>{
   const nombre = req.body.nombre;
   const edad = req.body.edad;
   const dni = req.body.dni;
+  const estado = req.body.estado;
 
-  db.query('UPDATE registro_pacientes SET nombre=?,edad=?,dni=? WHERE id=?', [nombre, edad, dni, id],
+  db.query('UPDATE registro_pacientes SET nombre=?,edad=?,dni=?,estado=? WHERE id=?', [nombre, edad, dni, id, estado],
     (err,result)=>{
       if(err){
         console.log(err)
