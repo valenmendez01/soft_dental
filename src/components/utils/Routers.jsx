@@ -11,6 +11,8 @@ const Routers = () => {
     <Route path="/pacientes" element={<Pacientes />} />
     <Route path="/configuracion" element={<Configuracion />} />
     <Route path="*" element={<Navigate to="/agenda" />} />
+    <Route path="/agenda/semanal" element={<Agenda />} />
+    <Route path="/agenda/mensual" element={<Agenda />} />
   </Routes>
 }
 

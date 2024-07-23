@@ -1,18 +1,10 @@
 
-import Calendar from "../components/Calendars/Calendar"
-import CalendarViewWithUpcomingEvent from "../components/Calendars/CalendarViewWithUpcomingEvent"
-import CardAgenda from "../components/Calendars/CardAgenda"
-import DayViewCalendar from "../components/Calendars/DayViewCalendar"
-import WeekViewCalendar from "../components/Calendars/WeekViewCalendar"
+import CardAgenda from "../components/Agenda/Calendars/CardAgenda"
 
 const Agenda = () => {
   return (
     <div className='container-fluid p-5 vh-100'>
       <CardAgenda />
-      {/* <Calendar />
-      <WeekViewCalendar />
-      <DayViewCalendar />
-      <CalendarViewWithUpcomingEvent /> */}
     </div>
   )
 }

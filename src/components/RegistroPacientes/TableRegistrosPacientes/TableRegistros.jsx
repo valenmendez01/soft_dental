@@ -265,9 +265,6 @@ export default function App() {
   const bottomContent = useMemo(() => {
     return (
       <div className="py-2 px-2 flex justify-between items-center">
-        <span className="w-[30%] text-small text-default-400">
-          Seleccione paciente
-        </span>
         <Pagination
           isCompact
           showControls

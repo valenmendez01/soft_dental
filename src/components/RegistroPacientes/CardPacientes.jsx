@@ -2,7 +2,6 @@
 import {Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/react";
 
 import TableRegistros from "./TableRegistrosPacientes/TableRegistros"
-import AñadirPaciente from "./AñadirPaciente";
 
 const CardPacientes = () => {
   return (
@@ -15,7 +14,6 @@ const CardPacientes = () => {
       <Divider/>
       <CardBody>
         <TableRegistros />
-        <AñadirPaciente />
       </CardBody>
       <Divider/>
       <CardFooter>
