@@ -1,17 +1,42 @@
+/* eslint-disable no-undef */
 /** @type {import('tailwindcss').Config} */
-// eslint-disable-next-line no-undef
 const { nextui } = require("@nextui-org/react");
 
+const labelsClasses = [
+  "indigo",
+  "gray",
+  "green",
+  "blue",
+  "red",
+  "purple",
+];
+
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
-  ],
+  purge: {
+    content: [
+      "./index.html",
+      "./src/**/*.{js,ts,jsx,tsx}",
+      "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
+    ],
+    safelist: [
+      ...labelsClasses.map((lbl) => `bg-${lbl}-500`),
+      ...labelsClasses.map((lbl) => `bg-${lbl}-200`),
+      ...labelsClasses.map((lbl) => `text-${lbl}-400`)
+    ],
+  },
   theme: {
+    extend: {
+      fontFamily: {
+        sans: ["Open Sans"]
+      },
+      gridTemplateColumns: {
+        "1/5": "1fr 5fr"
+      }
+    },
+  },
+  variants: {
     extend: {},
   },
   darkMode: "class",
-  plugins: [nextui()]
+  plugins: [require("@tailwindcss/forms"), nextui()]
 }
-

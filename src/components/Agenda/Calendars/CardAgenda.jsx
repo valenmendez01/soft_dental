@@ -4,6 +4,7 @@ import Navbar_agenda from "../Navbar_agenda"
 import Calendar from "./Calendar"
 import CalendarViewWithUpcomingEvent from "./CalendarViewWithUpcomingEvent"
 import WeekViewCalendar from "./WeekViewCalendar"
+import PruebaCalendar from "./PRUEBA/PruebaCalendar"
 import { useLocation } from 'react-router-dom';
 
 const CardAgenda = () => {
@@ -17,6 +18,8 @@ const CardAgenda = () => {
         return <Calendar />;
       case '/agenda/semanal':
         return <WeekViewCalendar />;
+      case '/agenda/prueba':
+        return <PruebaCalendar />;
       default:
         return <div>404 - Not Found</div>;
     }

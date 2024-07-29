@@ -29,6 +29,11 @@ export default function App() {
             Mensual
           </Link>
         </NavbarItem>
+        <NavbarItem className={activePath === "/agenda/prueba" ? "activa" : "inactiva"}>
+          <Link to="/agenda/prueba" onClick={() => setActivePath("/agenda/prueba")}>
+            Prueba
+          </Link>
+        </NavbarItem>
       </NavbarContent>
     </Navbar>
   );
