@@ -12,6 +12,7 @@ export default function Day({ day }) {
     setShowEventModal, // función para mostrar el modal de eventos.
     filteredEvents, // lista de eventos filtrados.
     setSelectedEvent, // función para seleccionar un evento.
+    monthIndex,
   } = useContext(GlobalContext);
 
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
@@ -39,7 +40,7 @@ export default function Day({ day }) {
   }
 
   function isCurrentMonth() {
-    return day.month() === dayjs().month();
+    return day.month() === monthIndex;
   }
   
   return (
@@ -47,6 +48,7 @@ export default function Day({ day }) {
       className={`border border-gray-200 flex flex-col p-2 ${
         isCurrentMonth() ? "" : 'bg-gray-50 text-gray-500'
       }`}
+      style={{ height: "150px" }}
     >
       <div
           className="flex-1 cursor-pointer"
@@ -60,21 +62,21 @@ export default function Day({ day }) {
         <header className="flex flex-col">
           <div className="flex text-xs leading-6 text-gray-700 lg:flex-auto">
             <p
-              className={`text-gray-500 p-1 my-1 ${getCurrentDayClass()}`}
+              className={`text-gray-500 p-1 ${getCurrentDayClass()}`}
             >
               {day.format("DD")} {/* numero del dia */}
             </p>
           </div>
         </header>
         <div className="text-center text-xs font-semibold leading-6 text-gray-700 lg:flex-none mt-1">
-          <div className="flex-1 cursor-pointer sr-only sm:not-sr-only py-4">
+          <div className="flex-1 cursor-pointer sr-only sm:not-sr-only py-2">
             {/* Mapea sobre dayEvents para renderizar cada evento. */}
             {dayEvents.slice(0, 2).map((evt, idx) => (
               <div
                 key={idx}
                 onClick={() => setSelectedEvent(evt)}
                 /* Aplica clases de Tailwind CSS para el estilo del contenedor del evento. */
-                className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+                className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-xs rounded mb-1 truncate`}
               >
                 {/* Muestra el título del evento. */}
                 {evt.title}
@@ -96,7 +98,7 @@ export default function Day({ day }) {
                           setSelectedEvent(evt);
                           setIsPopoverOpen(false);
                         }}
-                        className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-sm rounded mb-1 truncate`}
+                        className={`bg-${evt.label}-200 p-1 mr-3 text-gray-600 text-xs rounded mb-1 truncate`}
                       >
                         {evt.title}
                       </div>

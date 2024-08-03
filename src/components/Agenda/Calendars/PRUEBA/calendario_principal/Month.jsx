@@ -7,10 +7,10 @@ export default function Month({ month }) { // month se espera sea una matriz de 
   const daysOfWeek = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
   return (
     // grid para definir una cuadrícula con 7 columnas (grid-cols-7) y 5 filas (grid-rows-5)
-    <div className="flex-1 grid grid-cols-7 grid-rows-5">
+    <div className="grid grid-cols-7">
       {/* Fila de los días de la semana */}
       {daysOfWeek.map((day, idx) => (
-        <div key={idx} className="flex justify-center items-center border">
+        <div key={idx} className="h-10 flex justify-center items-center border">
           <p className="text-sm mt-1">{day}</p>
         </div>
       ))}

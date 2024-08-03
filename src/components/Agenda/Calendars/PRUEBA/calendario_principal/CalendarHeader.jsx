@@ -1,10 +1,9 @@
 
 import dayjs from "dayjs";
 import { useContext } from "react";
-//import logo from "../assets/logo.png";
 import GlobalContext from "../context/GlobalContext";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
-import CreateEventButton from "../aside/CreateEventButton";
+import CreateEventButton from "./CreateEventButton";
 export default function CalendarHeader() {
   const { monthIndex, setMonthIndex } = useContext(GlobalContext);
   function handlePrevMonth() {
@@ -42,7 +41,7 @@ export default function CalendarHeader() {
             type="button"
             className="hidden px-3.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:relative md:block"
           >
-            Today
+            Hoy
           </button>
           <span className="relative -mx-px h-5 w-px bg-gray-300 md:hidden" />
           <button

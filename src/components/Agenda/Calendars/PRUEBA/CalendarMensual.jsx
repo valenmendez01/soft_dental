@@ -5,6 +5,7 @@ import CalendarHeader from "./calendario_principal/CalendarHeader";
 import Month from "./calendario_principal/Month";
 import GlobalContext from "./context/GlobalContext";
 import EventModal from "./EventModal";
+import Labels from "./calendario_principal/Labels";
 
 const PruebaCalendar = () => {
     // Crea una variable de estado currentMonth y su función setCurrentMonth. Inicializa currentMonth con el valor retornado por getMonth() (el mes actual).
@@ -30,6 +31,7 @@ const PruebaCalendar = () => {
           {/* Renderiza el componente Month, pasando currentMonth como una prop. */}
           <Month month={currenMonth} />
         </div>
+        <Labels />
       </div>
     </React.Fragment>
   );

@@ -2,6 +2,7 @@ import dayjs from "dayjs";
 import React, { useContext, useEffect, useState } from "react";
 import GlobalContext from "../context/GlobalContext";
 import { getMonth } from "../Utils_days";
+import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/16/solid";
 
 export default function SmallCalendar() {
   const [currentMonthIdx, setCurrentMonthIdx] = useState(dayjs().month());
@@ -32,41 +33,54 @@ export default function SmallCalendar() {
     const nowDay = dayjs().format(format);
     const currDay = day.format(format);
     const slcDay = daySelected && daySelected.format(format);
-    if (nowDay === currDay) {
-      return "bg-blue-500 rounded-full text-white";
+    if (day.month() !== currentMonthIdx) {
+      return "bg-gray-50 text-gray-300"; // Clase para los días fuera del mes actual
+    } else if (nowDay === currDay) {
+      return "bg-blue-500 rounded-full text-white font-bold no-hover";
     } else if (currDay === slcDay) {
-      return "bg-blue-100 rounded-full text-blue-600 font-bold";
+      return "bg-blue-100 rounded-full text-blue-600 font-bold no-hover";
     } else {
       return "";
     }
   }
   return (
-    <div className="mt-9">
-      <header className="flex justify-between">
-        <p className="text-gray-500 font-bold">
-          {dayjs(new Date(dayjs().year(), currentMonthIdx)).format(
-            "MMMM YYYY"
-          )}
-        </p>
-        <div>
-          <button onClick={handlePrevMonth}>
-            <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">
-              chevron_left
-            </span>
+    <div className="">
+      <div className="flex items-center">
+          <button
+            onClick={handlePrevMonth}
+            type="button"
+            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+          >
+            <span className="sr-only">Previous month</span>
+            <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
           </button>
-          <button onClick={handleNextMonth}>
-            <span className="material-icons-outlined cursor-pointer text-gray-600 mx-2">
-              chevron_right
-            </span>
+
+          <p className="flex-auto text-sm font-semibold text-gray-500">
+            {dayjs(new Date(dayjs().year(), currentMonthIdx)).format(
+              "MMMM YYYY"
+            )}
+          </p>
+          
+          
+          <button
+            onClick={handleNextMonth}
+            type="button"
+            className="-m-1.5 flex flex-none items-center justify-center p-1.5 text-gray-400 hover:text-gray-500"
+          >
+            <span className="sr-only">Next month</span>
+            <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
           </button>
-        </div>
-      </header>
-      <div className="grid grid-cols-7 grid-rows-6">
-        {currentMonth[0].map((day, i) => (
-          <span key={i} className="text-sm py-1 text-center">
-            {day.format("dd").charAt(0)}
-          </span>
-        ))}
+      </div>
+      <div className="mt-6 grid grid-cols-7 text-xs leading-6 text-gray-500">
+        <div>D</div>
+        <div>L</div>
+        <div>M</div>
+        <div>M</div>
+        <div>J</div>
+        <div>V</div>
+        <div>S</div>
+      </div>
+      <div className="isolate mt-2 grid grid-cols-7 gap-px rounded-lg bg-white text-sm shadow ring-1 ring-gray-200">
         {currentMonth.map((row, i) => (
           <React.Fragment key={i}>
             {row.map((day, idx) => (
@@ -76,9 +90,9 @@ export default function SmallCalendar() {
                   setSmallCalendarMonth(currentMonthIdx);
                   setDaySelected(day);
                 }}
-                className={`py-1 w-full ${getDayClass(day)}`}
+                className={`w-full py-1.5 ${getDayClass(day) === '' ? 'hover:bg-gray-100' : ''} focus:z-10 text-gray-900 ${getDayClass(day)}`}
               >
-                <span className="text-sm">{day.format("D")}</span>
+                <span className="text-sm mx-auto flex h-7 w-7 items-center justify-center rounded-full">{day.format("D")}</span>
               </button>
             ))}
           </React.Fragment>
