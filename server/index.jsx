@@ -52,6 +52,25 @@ app.get("/pacientes", (req,res)=>{
   );
 });
 
+// Query para obtener un paciente específico por ID
+app.get("/pacientes/:id", (req, res) => {
+  const { id } = req.params;
+
+  db.query('SELECT * FROM registro_pacientes WHERE id = ?', [id], 
+    (err, result) => {
+      if (err) {
+        console.log(err);
+        res.status(500).send('Error en el servidor');
+      } else if (result.length === 0) {
+        res.status(404).send('Paciente no encontrado');
+      } else {
+        res.send(result[0]);
+      }
+    }
+  );
+});
+
+// Actualizar datos de un paciente
 app.put("/update", (req,res)=>{
   const id = req.body.id;
   const nombre = req.body.nombre;
@@ -70,6 +89,7 @@ app.put("/update", (req,res)=>{
   );
 });
 
+// Eliminar un paciente
 app.delete("/delete/:id", (req,res)=>{
   const id = req.params.id;
 

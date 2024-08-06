@@ -24,6 +24,7 @@ import { DeleteIcon } from "./DeleteIcon";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { EyeIcon } from "./EyeIcon";
+import { useNavigate } from 'react-router-dom';
 
 const INITIAL_VISIBLE_COLUMNS = ["nombre", "apellido", "dni", "acciones"];
 
@@ -46,6 +47,7 @@ export default function App() {
     column: "nacimiento",
     direction: "ascending",
   });
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [pacientesList, setPacientesList] = useState([]);
 
@@ -89,6 +91,10 @@ export default function App() {
       });
   }
   })}
+
+  const detallePaciente = (paciente) => {
+    navigate(`/pacientes/${paciente.id}`);
+  };
 
   const hasSearchFilter = Boolean(filterValue);
 

@@ -2,6 +2,7 @@ import { Routes, Route, Navigate } from "react-router-dom"
 import Pacientes from "../../pages/Pacientes"
 import Agenda from "../../pages/Agenda"
 import Configuracion from "../../pages/Configuracion"
+import Perfil from "../Perfiles/Perfil"
 
 const Routers = () => {
   return <Routes>
@@ -9,6 +10,7 @@ const Routers = () => {
     <Route path='/agenda' element={<Agenda />}/>
     <Route path='/login' element={<Navigate to="/agenda" />}/>
     <Route path="/pacientes" element={<Pacientes />} />
+    <Route path="/pacientes/:id" element={<Perfil />} />
     <Route path="/configuracion" element={<Configuracion />} />
     <Route path="*" element={<Navigate to="/agenda" />} />
     <Route path="/agenda/semanal" element={<Agenda />} />
