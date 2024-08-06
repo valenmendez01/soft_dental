@@ -1,7 +1,6 @@
 import React, { useState, useContext, useEffect } from "react";
 import { getMonth } from "./Utils_days"; // Esta función genera una matriz de días para un mes específico.
 import CalendarHeader from "./calendario_principal/CalendarHeader";
-//import Sidebar from "./aside/Sidebar";
 import Month from "./calendario_principal/Month";
 import GlobalContext from "./context/GlobalContext";
 import EventModal from "./EventModal";
@@ -27,7 +26,6 @@ const PruebaCalendar = () => {
       <div className="lg:flex lg:h-full lg:flex-col">
         <CalendarHeader />
         <div className="shadow ring-1 ring-black ring-opacity-5 lg:flex lg:flex-auto lg:flex-col">
-          {/* <Sidebar /> */}
           {/* Renderiza el componente Month, pasando currentMonth como una prop. */}
           <Month month={currenMonth} />
         </div>

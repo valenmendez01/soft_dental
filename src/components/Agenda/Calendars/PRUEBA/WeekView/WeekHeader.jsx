@@ -4,7 +4,7 @@ import GlobalContext from "../context/GlobalContext";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import CreateEventButton from "../calendario_principal/CreateEventButton";
 
-export default function CalendarWeekHeader() {
+export default function WeekHeader() {
   const { weekIndex, setWeekIndex } = useContext(GlobalContext);
   function handlePrevWeek() {
     setWeekIndex(weekIndex - 1);

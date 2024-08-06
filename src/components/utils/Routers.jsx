@@ -13,7 +13,6 @@ const Routers = () => {
     <Route path="*" element={<Navigate to="/agenda" />} />
     <Route path="/agenda/semanal" element={<Agenda />} />
     <Route path="/agenda/mensual" element={<Agenda />} />
-    <Route path="/agenda/prueba" element={<Agenda />} />
   </Routes>
 }
 
