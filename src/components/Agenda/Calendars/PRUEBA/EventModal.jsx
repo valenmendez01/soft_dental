@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import GlobalContext from "./context/GlobalContext";
+import dayjs from "dayjs";
 
 const labelsClasses = [
   "indigo",
@@ -29,14 +30,31 @@ export default function EventModal() {
       ? labelsClasses.find((lbl) => lbl === selectedEvent.label)
       : labelsClasses[0]
   );
+  const [startTime, setStartTime] = useState(
+    selectedEvent ? dayjs(selectedEvent.startTime).format("HH:mm") : ""
+  );
+  const [endTime, setEndTime] = useState(
+    selectedEvent ? dayjs(selectedEvent.endTime).format("HH:mm") : ""
+  );
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    // Maneja que la hora de inicio sea mayor a la de fin
+    const start = dayjs(startTime, "HH:mm");
+    const end = dayjs(endTime, "HH:mm");
+    if (start.isAfter(end)) {
+      alert("La hora de inicio no puede ser mayor que la hora de fin.");
+      return;
+    }
+
     const calendarEvent = {
       title,
       description,
       label: selectedLabel,
       day: daySelected.valueOf(),
+      startTime: start.format(),
+      endTime: end.format(),
       id: selectedEvent ? selectedEvent.id : Date.now(),
     };
     if (selectedEvent) {
@@ -91,6 +109,25 @@ export default function EventModal() {
             <span className="material-icons-outlined text-gray-400">
               schedule
             </span>
+            <input
+              type="time"
+              name="startTime"
+              value={startTime}
+              required
+              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              onChange={(e) => setStartTime(e.target.value)}
+            />
+            <span className="material-icons-outlined text-gray-400">
+              schedule
+            </span>
+            <input
+              type="time"
+              name="endTime"
+              value={endTime}
+              required
+              className="pt-3 border-0 text-gray-600 pb-2 w-full border-b-2 border-gray-200 focus:outline-none focus:ring-0 focus:border-blue-500"
+              onChange={(e) => setEndTime(e.target.value)}
+            />
             <p>{daySelected.format("dddd, MMMM DD")}</p>
             <span className="material-icons-outlined text-gray-400">
               segment

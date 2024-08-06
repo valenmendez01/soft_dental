@@ -6,6 +6,9 @@ import React from "react";
 // Crea un contexto global con valores por defecto.
 const GlobalContext = React.createContext({
   // Controlan el índice del mes actual.
+  weekIndex: 0,
+  setWeekIndex: (index) => {},
+  // Controlan el índice del mes actual.
   monthIndex: 0,
   setMonthIndex: (index) => {},
   // Controlan el índice del mes en un calendario pequeño.
@@ -17,6 +20,11 @@ const GlobalContext = React.createContext({
   // Controlan la visibilidad del modal de eventos.
   showEventModal: false,
   setShowEventModal: () => {},
+  // Maneja hora de inicio y fin
+  startTime: null,
+  setStartTime: () => {},
+  endTime: null,
+  setEndTime: () => {},
   // Despacha eventos de calendario.
   dispatchCalEvent: ({ type, payload }) => {},
   // Almacena eventos guardados.

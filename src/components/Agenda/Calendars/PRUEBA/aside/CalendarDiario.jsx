@@ -1,15 +1,8 @@
-import { useContext } from "react";
 import CreateEventButton from "../calendario_principal/CreateEventButton"
 import SmallCalendar from "./SmallCalendar"
-import GlobalContext from "../context/GlobalContext";
+import ListaEventos from "./ListaEventos";
 
 const CalendarDiario = () => {
-    const { daySelected, savedEvents } = useContext(GlobalContext);
-    
-    // Filtra los eventos guardados según el día seleccionado
-    const eventsForSelectedDay = savedEvents.filter(
-        (event) => daySelected && daySelected.isSame(event.day, 'day')
-    );
   return (
     <div>
         <header className="flex items-center justify-between border-b border-gray-200 px-6 py-4 lg:flex-none">
@@ -26,19 +19,7 @@ const CalendarDiario = () => {
                 <SmallCalendar />
             </div>
             <ol className="mt-4 divide-y divide-gray-100 text-sm leading-6 lg:col-span-7 xl:col-span-8">
-                <h1>
-                    {eventsForSelectedDay.length > 0 ? (
-                        eventsForSelectedDay.map((event, index) => (
-                            <div key={index} className="event-item">
-                                <p>{event.title}</p>
-                                <p>{event.description}</p>
-                                {/* Agrega cualquier otra información del evento que desees mostrar */}
-                            </div>
-                        ))
-                    ) : (
-                        <p>No hay eventos para el día seleccionado</p>
-                    )}
-                </h1>
+                <ListaEventos />
             </ol>
         </div>
     </div>

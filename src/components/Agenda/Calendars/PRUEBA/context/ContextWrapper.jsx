@@ -38,6 +38,8 @@ import {
   export default function ContextWrapper(props) {
     // Estado y función para manejar el índice del mes actual.
     const [monthIndex, setMonthIndex] = useState(dayjs().month());
+    // Estado y función para manejar el índice de la semana actual.
+    const [weekIndex, setWeekIndex] = useState(dayjs().week());
     // Estado y función para manejar el mes del calendario pequeño.
     const [smallCalendarMonth, setSmallCalendarMonth] = useState(null);
     // Estado y función para manejar el día seleccionado.
@@ -48,6 +50,9 @@ import {
     const [selectedEvent, setSelectedEvent] = useState(null);
     // Estado y función para manejar las etiquetas de los eventos.
     const [labels, setLabels] = useState([]);
+    // Estado y funcion para manejar hora de inicio y fin
+    const [startTime, setStartTime] = useState(null);
+    const [endTime, setEndTime] = useState(null);
     // Estado y función para manejar los eventos guardados. initEvents inicializa el estado desde el localStorage.
     const [savedEvents, dispatchCalEvent] = useReducer(
       savedEventsReducer,
@@ -114,6 +119,8 @@ import {
       <GlobalContext.Provider
         // El valor del contexto que contiene todos los estados y funciones definidos.
         value={{
+          weekIndex,
+          setWeekIndex,
           monthIndex,
           setMonthIndex,
           smallCalendarMonth,
@@ -125,6 +132,10 @@ import {
           dispatchCalEvent,
           selectedEvent,
           setSelectedEvent,
+          startTime,
+          setStartTime,
+          endTime,
+          setEndTime,
           savedEvents,
           setLabels,
           labels,

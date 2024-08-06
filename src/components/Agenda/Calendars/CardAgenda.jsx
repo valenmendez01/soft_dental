@@ -2,10 +2,10 @@
 import {Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/react";
 import Navbar_agenda from "../Navbar_agenda"
 import CalendarMensual from "./PRUEBA/CalendarMensual"
-import CalendarViewWithUpcomingEvent from "./CalendarViewWithUpcomingEvent"
-import WeekViewCalendar from "./WeekViewCalendar"
+import WeekViewCalendar from "./PRUEBA/WeekView/WeekViewCalendar"
 import CalendarDiario from "./PRUEBA/aside/CalendarDiario";
 import { useLocation } from 'react-router-dom';
+import WeekViewCalendar2 from "./PRUEBA/WeekView/WeekViewCalendar2";
 
 const CardAgenda = () => {
   const location = useLocation();
@@ -13,13 +13,13 @@ const CardAgenda = () => {
   const renderContent = () => {
     switch (location.pathname) {
       case '/agenda':
-        return <CalendarViewWithUpcomingEvent />;
+        return <CalendarDiario />;
       case '/agenda/mensual':
         return <CalendarMensual />;
       case '/agenda/semanal':
         return <WeekViewCalendar />;
       case '/agenda/prueba':
-        return <CalendarDiario />;
+        return <WeekViewCalendar2 />;
       default:
         return <div>404 - Not Found</div>;
     }
