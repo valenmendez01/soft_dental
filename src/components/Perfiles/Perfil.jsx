@@ -5,6 +5,7 @@ import axios from 'axios';
 import {Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/react";
 import Navbar_perfil from "./Navbar_perfil"
 import Header_perfil from './Header_perfil';
+import MiniCardAtencion from './MiniCardAtencion';
 
 const Perfil = () => {
   const { id } = useParams();
@@ -21,14 +22,13 @@ const Perfil = () => {
   return (
     <div className='container-fluid p-5 vh-100'>
       <Card className="max-w-[100%]">
-        <CardHeader>
-          <div className='flex flex-col'>
-            <Header_perfil />
-            <Navbar_perfil />
-          </div>
+        <CardHeader className="justify-between">
+          <Header_perfil />
+          <MiniCardAtencion />
         </CardHeader>
         <Divider/>
         <CardBody>
+          <Navbar_perfil />
           <Outlet /> {/* renderiza subrutas de Routers */}
         </CardBody>
         <Divider/>

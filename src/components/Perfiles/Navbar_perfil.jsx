@@ -13,7 +13,7 @@ export default function Navbar_perfil() {
 
   return (
     <Navbar>
-      <NavbarContent className="d-flex justify-content-center gap-40">
+      <NavbarContent className="d-flex justify-content-center space-between">
         <NavbarItem className={activePath === `/pacientes/${id}` ? "activa" : "inactiva"}>
           <Link to={`/pacientes/${id}`} onClick={() => setActivePath(`/pacientes/${id}`)}>
             Datos personales
