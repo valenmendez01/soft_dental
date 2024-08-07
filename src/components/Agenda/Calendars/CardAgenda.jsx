@@ -1,39 +1,24 @@
 
 import {Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/react";
 import Navbar_agenda from "../Navbar_agenda"
-import CalendarMensual from "./PRUEBA/CalendarMensual"
-import CalendarDiario from "./PRUEBA/aside/CalendarDiario";
-import { useLocation } from 'react-router-dom';
-import CalendarWeekDaily from "./PRUEBA/WeekView/CalendarWeekDaily";
+import { Outlet } from 'react-router-dom';
 
 const CardAgenda = () => {
-  const location = useLocation();
-
-  const renderContent = () => {
-    switch (location.pathname) {
-      case '/agenda':
-        return <CalendarDiario />;
-      case '/agenda/mensual':
-        return <CalendarMensual />;
-      case '/agenda/semanal':
-        return <CalendarWeekDaily />;
-      default:
-        return <div>404 - Not Found</div>;
-    }
-  };
   return (
-    <Card className="max-w-[100%]">
-      <CardHeader>
-        <Navbar_agenda />
-      </CardHeader>
-      <Divider/>
-      <CardBody>
-        {renderContent()}
-      </CardBody>
-      <Divider/>
-      <CardFooter>
-      </CardFooter>
-    </Card>
+    <div className='container-fluid p-5 vh-100'>
+      <Card className="max-w-[100%]">
+        <CardHeader>
+          <Navbar_agenda />
+        </CardHeader>
+        <Divider/>
+        <CardBody>
+          <Outlet /> {/* renderiza subrutas de Routers */}
+        </CardBody>
+        <Divider/>
+        <CardFooter>
+        </CardFooter>
+      </Card>
+    </div>
   );
 }
 

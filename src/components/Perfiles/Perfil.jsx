@@ -1,7 +1,10 @@
 
-import { useParams } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/react";
+import Navbar_perfil from "./Navbar_perfil"
+import Header_perfil from './Header_perfil';
 
 const Perfil = () => {
   const { id } = useParams();
@@ -16,15 +19,33 @@ const Perfil = () => {
   if (!patient) return <div>Cargando...</div>;
 
   return (
-    <div>
-      <h1>{patient.nombre} {patient.apellido}</h1>
-      <p><strong>DNI:</strong> {patient.dni}</p>
-      <p><strong>Fecha de nacimiento:</strong> {patient.nacimiento}</p>
-      <p><strong>Sexo:</strong> {patient.sexo}</p>
-      <p><strong>Celular:</strong> {patient.celular}</p>
-      {/* Agrega más detalles según sea necesario */}
+    <div className='container-fluid p-5 vh-100'>
+      <Card className="max-w-[100%]">
+        <CardHeader>
+          <div className='flex flex-col'>
+            <Header_perfil />
+            <Navbar_perfil />
+          </div>
+        </CardHeader>
+        <Divider/>
+        <CardBody>
+          <Outlet /> {/* renderiza subrutas de Routers */}
+        </CardBody>
+        <Divider/>
+        <CardFooter>
+        </CardFooter>
+      </Card>
     </div>
+    // <div>
+    //   <h1>{patient.nombre} {patient.apellido}</h1>
+    //   <p><strong>DNI:</strong> {patient.dni}</p>
+    //   <p><strong>Fecha de nacimiento:</strong> {patient.nacimiento}</p>
+    //   <p><strong>Sexo:</strong> {patient.sexo}</p>
+    //   <p><strong>Celular:</strong> {patient.celular}</p>
+    //   {/* Agrega más detalles según sea necesario */}
+    // </div>
   );
 };
 
 export default Perfil;
+

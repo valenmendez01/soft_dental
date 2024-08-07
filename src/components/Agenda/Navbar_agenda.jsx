@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 export default function App() {
-
   const location = useLocation();
   const [activePath, setActivePath] = useState(location.pathname);
 
