@@ -1,7 +1,7 @@
 
 const FacturasPagos = () => {
   return (
-    <div>FacturasPagos</div>
+    <div>Próximamente: Facturas y Pagos</div>
   )
 }
 

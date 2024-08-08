@@ -79,7 +79,7 @@ const ModalForm = () => {
                       />
                       <Input
                         key='apellido'
-                        type="email"
+                        type="text"
                         label="Apellido"
                         labelPlacement='inside'
                         onChange={(event)=>{

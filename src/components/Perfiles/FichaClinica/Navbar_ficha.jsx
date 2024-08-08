@@ -14,33 +14,33 @@ export default function Navbar_perfil() {
   return (
     <Navbar>
       <NavbarContent className="d-flex justify-content-center space-between">
-        <NavbarItem className={activePath === `/pacientes/${id}` ? "activa" : "inactiva"}>
-          <Link to={`/pacientes/${id}`} onClick={() => setActivePath(`/pacientes/${id}`)}>
+        <NavbarItem className={activePath === `/pacientes/${id}/ficha` ? "activa" : "inactiva"}>
+          <Link to={`/pacientes/${id}/ficha`} onClick={() => setActivePath(`/pacientes/${id}/ficha`)}>
             Historial y evolución
           </Link>
         </NavbarItem>
-        <NavbarItem className={activePath === `/pacientes/${id}/ficha` ? "activa" : "inactiva"}>
-          <Link to={`/pacientes/${id}/ficha`} onClick={() => setActivePath(`/pacientes/${id}/ficha`)}>
+        <NavbarItem className={activePath === `/pacientes/${id}/ficha/anamnesis` ? "activa" : "inactiva"}>
+          <Link to={`/pacientes/${id}/ficha/anamnesis`} onClick={() => setActivePath(`/pacientes/${id}/ficha/anamnesis`)}>
             Anamnesis
           </Link>
         </NavbarItem>
-        <NavbarItem className={activePath === `/pacientes/${id}/tratamiento` ? "activa" : "inactiva"}>
-          <Link to={`/pacientes/${id}/tratamiento`} onClick={() => setActivePath(`/pacientes/${id}/tratamiento`)}>
+        <NavbarItem className={activePath === `/pacientes/${id}/ficha/odontograma` ? "activa" : "inactiva"}>
+          <Link to={`/pacientes/${id}/ficha/odontograma`} onClick={() => setActivePath(`/pacientes/${id}/ficha/odontograma`)}>
             Odontograma
           </Link>
         </NavbarItem>
-        <NavbarItem className={activePath === `/pacientes/${id}/facturacion` ? "activa" : "inactiva"}>
-          <Link to={`/pacientes/${id}/facturacion`} onClick={() => setActivePath(`/pacientes/${id}/facturacion`)}>
+        <NavbarItem className={activePath === `/pacientes/${id}/ficha/periodontograma` ? "activa" : "inactiva"}>
+          <Link to={`/pacientes/${id}/ficha/periodontograma`} onClick={() => setActivePath(`/pacientes/${id}/ficha/periodontograma`)}>
             Periodontograma
           </Link>
         </NavbarItem>
-        <NavbarItem className={activePath === `/pacientes/${id}/facturacion` ? "activa" : "inactiva"}>
-          <Link to={`/pacientes/${id}/facturacion`} onClick={() => setActivePath(`/pacientes/${id}/facturacion`)}>
+        <NavbarItem className={activePath === `/pacientes/${id}/ficha/documentacion` ? "activa" : "inactiva"}>
+          <Link to={`/pacientes/${id}/ficha/documentacion`} onClick={() => setActivePath(`/pacientes/${id}/ficha/documentacion`)}>
             Documentación
           </Link>
         </NavbarItem>
-        <NavbarItem className={activePath === `/pacientes/${id}/facturacion` ? "activa" : "inactiva"}>
-          <Link to={`/pacientes/${id}/facturacion`} onClick={() => setActivePath(`/pacientes/${id}/facturacion`)}>
+        <NavbarItem className={activePath === `/pacientes/${id}/ficha/recetario` ? "activa" : "inactiva"}>
+          <Link to={`/pacientes/${id}/ficha/recetario`} onClick={() => setActivePath(`/pacientes/${id}/ficha/recetario`)}>
             Recetario
           </Link>
         </NavbarItem>

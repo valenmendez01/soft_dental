@@ -20,8 +20,6 @@ import Recetario from "../Perfiles/FichaClinica/Recetario"
 const Routers = () => {
   return <Routes>
     <Route path='/login' element={<Navigate to="/agenda" />}/>
-    <Route path='/' element={<CardAgenda />}/>
-    <Route path="*" element={<Navigate to="/agenda" />} />
     <Route path='/agenda' element={<CardAgenda />}>
       <Route index element={<CalendarDiario />} />
       <Route path="semanal" element={<CalendarWeekDaily />} />
@@ -44,6 +42,8 @@ const Routers = () => {
     </Route>
 
     <Route path="/configuracion" element={<Configuracion />} />
+    <Route path='/' element={<Navigate to="/agenda" />}/>
+    <Route path="*" element={<Navigate to="/agenda" />} />
   </Routes>
 }
 
