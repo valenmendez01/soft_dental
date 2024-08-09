@@ -1,7 +1,7 @@
 
 const poligonosOdontograma = () => {
   return (
-    <div>
+    <div style={{ marginLeft: '-13px', marginRight: '-13px' }}>
       <svg height="100" width="100" viewBox="0 0 100 100">
           {/* <!-- Agrupamos los elementos a rotar --> */}
           <g transform="rotate(45, 50, 50)">
@@ -19,7 +19,7 @@ const poligonosOdontograma = () => {
               <line x1="25" y1="50" x2="75" y2="50" stroke="black"/>
           </g>
           {/* <!-- Círculo central --> */}
-          <circle cx="50" cy="50" r="14" fill="red" stroke="black" />
+          <circle cx="50" cy="50" r="12" fill="white" stroke="black" />
       </svg>
     </div>
   )
