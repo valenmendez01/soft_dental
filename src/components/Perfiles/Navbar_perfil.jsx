@@ -19,9 +19,7 @@ export default function Navbar_perfil() {
             Datos personales
           </Link>
         </NavbarItem>
-        <NavbarItem 
-          className={activePath.startsWith(`/pacientes/${id}/ficha`) ? "activa" : "inactiva"}
-        >
+        <NavbarItem className={activePath.startsWith(`/pacientes/${id}/ficha`) ? "activa" : "inactiva"}>
           <Link to={`/pacientes/${id}/ficha`} onClick={() => setActivePath(`/pacientes/${id}/ficha`)}>
             Ficha clínica
           </Link>

@@ -13,6 +13,13 @@
   font-family: 'Poppins', sans-serif;
 }
 
+.poligono {
+  max-width: 100%; /* O ajusta a un tamaño específico */
+  height: auto;
+  flex: 1 0 10%; /* Ajusta el espacio que ocupa cada polígono */
+  box-sizing: border-box;
+}
+
 .sidebar{
   color: #fff;
 }

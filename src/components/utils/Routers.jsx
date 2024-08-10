@@ -15,10 +15,10 @@ import Anamnesis from "../Perfiles/FichaClinica/Anamnesis"
 import Periodontograma from "../Perfiles/FichaClinica/Periodontograma"
 import Documentacion from "../Perfiles/FichaClinica/Documentacion"
 import Recetario from "../Perfiles/FichaClinica/Recetario"
-import NavbarOdontograma from "../Perfiles/FichaClinica/NavbarOdontograma"
-import OdontogramaCatastral from "../Perfiles/FichaClinica/OdontogramaCatastral"
-import OdontogramaRealizado from "../Perfiles/FichaClinica/OdontogramaRealizado"
-import OdontogramaRealizar from "../Perfiles/FichaClinica/OdontogramaRealizar"
+import NavbarOdontograma from "../Perfiles/FichaClinica/Odontograma/BodyOdontograma"
+import Realizado from "../Perfiles/FichaClinica/Odontograma/Navbars/Realizado"
+import Realizar from "../Perfiles/FichaClinica/Odontograma/Navbars/Realizar"
+import Catastral from "../Perfiles/FichaClinica/Odontograma/Navbars/Catastral"
 
 const Routers = () => {
   return <Routes>
@@ -38,9 +38,9 @@ const Routers = () => {
         <Route index element={<HistorialEvolucion />} />
         <Route path="anamnesis" element={<Anamnesis />} />
         <Route path="odontograma" element={<NavbarOdontograma />}>
-          <Route index element={<OdontogramaCatastral />} />
-          <Route path="odontogramarealizado" element={<OdontogramaRealizado />} />
-          <Route path="odontogramarealizar" element={<OdontogramaRealizar />} />
+          <Route index element={<Catastral />} />
+          <Route path="odontogramarealizado" element={<Realizado />} />
+          <Route path="odontogramarealizar" element={<Realizar />} />
         </Route>
         <Route path="periodontograma" element={<Periodontograma />} />
         <Route path="documentacion" element={<Documentacion />} />

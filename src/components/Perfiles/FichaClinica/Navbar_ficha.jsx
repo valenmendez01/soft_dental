@@ -8,6 +8,7 @@ export default function Navbar_perfil() {
   const [activePath, setActivePath] = useState(location.pathname);
 
   useEffect(() => {
+    console.log('useEffect ejecutado, Ruta actual:', location.pathname);
     setActivePath(location.pathname);
   }, [location]);
 
@@ -24,7 +25,7 @@ export default function Navbar_perfil() {
             Anamnesis
           </Link>
         </NavbarItem>
-        <NavbarItem className={activePath === `/pacientes/${id}/ficha/odontograma` ? "activa" : "inactiva"}>
+        <NavbarItem className={activePath.startsWith(`/pacientes/${id}/ficha/odontograma`) ? "activa" : "inactiva"}>
           <Link to={`/pacientes/${id}/ficha/odontograma`} onClick={() => setActivePath(`/pacientes/${id}/ficha/odontograma`)}>
             Odontograma
           </Link>

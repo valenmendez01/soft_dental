@@ -25,7 +25,7 @@ export default function FichaClinica() {
               Anamnesis
             </Link>
           </NavbarItem>
-          <NavbarItem className={activePath === `/pacientes/${id}/ficha/odontograma` ? "activa" : "inactiva"}>
+          <NavbarItem className={activePath === `/pacientes/${id}/ficha/odontograma` || activePath === `/pacientes/${id}/ficha/odontograma/odontogramarealizar` || activePath === `/pacientes/${id}/ficha/odontograma/odontogramarealizado` ? "activa" : "inactiva"}>
             <Link to={`/pacientes/${id}/ficha/odontograma`} onClick={() => setActivePath(`/pacientes/${id}/ficha/odontograma`)}>
               Odontograma
             </Link>
