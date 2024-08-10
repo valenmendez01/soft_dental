@@ -1,6 +1,7 @@
 import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/react";
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PDF from "./PDF";
+import TextInput from "./TextInput";
 
 const Recetario = () => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -9,7 +10,6 @@ const Recetario = () => {
     <div className="container ml-3 mt-4">
       <div className="d-flex align-items-center justify-between">
         <h1 className="fs-4">Recetas</h1>
-        <Button color="success" variant="flat" onPress={onOpen}>Crear receta</Button>
       </div>
       <Modal size='3xl' isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} backdrop="blur">
         <ModalContent>
@@ -26,9 +26,6 @@ const Recetario = () => {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
-                  Cerrar
-                </Button>
                 <PDFDownloadLink document={<PDF />} fileName="recetario.pdf">
                   {({ loading }) =>
                     loading ? (
@@ -42,11 +39,18 @@ const Recetario = () => {
                     )
                   }
                 </PDFDownloadLink>
+                <Button color="danger" variant="flat" onPress={onClose}>
+                  Cerrar
+                </Button>
               </ModalFooter>
             </>
           )}
         </ModalContent>
       </ Modal>
+      
+      <h1 className="mt-2">Dirigirse a Configuración/Recetario para modificar las opciones predeterminadas de la plantilla del odontólogo</h1>
+      <TextInput />
+      <Button className="mt-7" color="success" variant="flat" onPress={onOpen}>Crear receta</Button>
     </div>
   );
 };
