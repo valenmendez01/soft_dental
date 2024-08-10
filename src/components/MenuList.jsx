@@ -61,11 +61,11 @@ const MenuList = ({ onSelect, collapsed }) => {
     defaultSelectedKey = 'agenda';
   } else if (location.pathname.startsWith('/tareas')) {
     defaultSelectedKey = 'tareas';
-  } else if (location.pathname === '/pacientes') {
+  } else if (location.pathname.startsWith('/pacientes')) {
     defaultSelectedKey = 'pacientes';
   } else if (location.pathname.startsWith('/odontologos')) {
     defaultSelectedKey = 'odontologos';
-  } else if (location.pathname === '/configuracion') {
+  } else if (location.pathname.startsWith('/configuracion')) {
     defaultSelectedKey = 'configuracion';
   }
 

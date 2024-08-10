@@ -1,4 +1,4 @@
-import { Input } from "@nextui-org/react"
+import { Button, Input } from "@nextui-org/react"
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -72,6 +72,9 @@ const Inputs = () => {
             labelPlacement="outside"
           />
         </div>
+        <Button color="success" variant="flat" className="mt-3">
+          Agregar
+        </Button>
       </div>
     </div>
   )
