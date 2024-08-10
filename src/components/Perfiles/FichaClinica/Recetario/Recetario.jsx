@@ -2,6 +2,8 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDi
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PDF from "./PDF";
 import TextInput from "./TextInput";
+import DocumentForm from "./DocumentForm";
+import FileUpload from "./FileUpload";
 
 const Recetario = () => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
@@ -51,6 +53,8 @@ const Recetario = () => {
       <h1 className="mt-2">Dirigirse a Configuración/Recetario para modificar las opciones predeterminadas de la plantilla del odontólogo</h1>
       <TextInput />
       <Button className="mt-7" color="success" variant="flat" onPress={onOpen}>Crear receta</Button>
+      <DocumentForm />
+      {/* <FileUpload /> */}
     </div>
   );
 };
