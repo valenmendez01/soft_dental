@@ -1,60 +1,33 @@
-const db = require('../db/connection.js');
+const mysql = require('mysql');
 
-const createOrUpdateDocumento = (req, res) => {
-  const { titulo, descripcion } = req.body;
-  const archivo = req.file ? req.file.filename : null;
+// Conexión a la base de datos
+const db = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    password: "",
+    database: "soft_dental_database"
+});
 
-  // Verifica si ya existe una fila en la tabla
-  db.query('SELECT COUNT(*) AS count FROM receta', (err, result) => {
-    if (err) {
-      console.log(err);
-      return res.status(500).send("Error al verificar la existencia del documento");
-    }
-
-    if (result[0].count > 0) {
-      // Si existe, actualiza la fila
-      db.query('UPDATE receta SET titulo=?, descripcion=?, archivo=? WHERE id=1', 
-        [titulo, descripcion, archivo],
-        (err, result) => {
-          if (err) {
-            console.log(err);
-            res.status(500).send("Error al actualizar el documento");
-          } else {
-            res.json({ message: "Documento actualizado correctamente" });
-          }
-        }
-      );
-    } else {
-      // Si no existe, inserta una nueva fila
-      db.query('INSERT INTO receta(titulo, descripcion, archivo) VALUES(?, ?, ?)', 
-        [titulo, descripcion, archivo],
-        (err, result) => {
-          if (err) {
-            console.log(err);
-            res.status(500).send("Error al crear el documento");
-          } else {
-            res.json({ message: "Documento creado correctamente" });
-          }
-        }
-      );
-    }
-  });
+const uploadImage = (req, res) => {
+    const image = req.file.filename;
+    const { id } = req.params;
+    const sql = "UPDATE recetario SET image = ? WHERE id = ?";
+    db.query(sql, [image, id], (err, result) => {
+        if(err) return res.status(500).json({Message: "Error"});
+        return res.json({Status: "Success"});
+    });
 };
 
-const getDocumento = (req, res) => {
-  db.query('SELECT * FROM receta', (err, result) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error al obtener el documento");
-    } else if (result.length === 0) {
-      res.status(404).send('Documento no encontrado');
-    } else {
-      res.send(result[0]);
-    }
-  });
+const getRecetario = (req, res) => {
+    const sql = "SELECT * FROM recetario";
+    db.query(sql, (err, result) => {
+        if(err) return res.json("Error");
+        return res.json(result);
+    });
 };
 
 module.exports = {
-  createOrUpdateDocumento,
-  getDocumento,
+    uploadImage,
+    getRecetario
 };
+

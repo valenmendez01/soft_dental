@@ -53,8 +53,8 @@ const Recetario = () => {
       <h1 className="mt-2">Dirigirse a Configuración/Recetario para modificar las opciones predeterminadas de la plantilla del odontólogo</h1>
       <TextInput />
       <Button className="mt-7" color="success" variant="flat" onPress={onOpen}>Crear receta</Button>
-      <DocumentForm />
-      {/* <FileUpload /> */}
+      {/* <DocumentForm /> */}
+      <FileUpload />
     </div>
   );
 };
