@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function PDF() {
+const PDF = () => {
   return (
     <Document>
       <Page style={styles.page}>

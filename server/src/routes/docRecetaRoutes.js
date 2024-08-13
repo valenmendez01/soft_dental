@@ -4,11 +4,12 @@ const docRecetaController = require('../controllers/docRecetaController');
 const upload = require('../middleware/uploadMiddleware');
 
 // Ruta para crear o actualizar el documento
-router.post('/pacientes/:id/ficha/recetario/upload', upload.single('image'), docRecetaController.uploadImage);
-//router.post("/pacientes/:id/ficha/recetario/upload", upload.single('image'), documentoController.createOrUpdateDocumento);
+router.post('/pacientes/:id/ficha/recetario/upload', upload.fields([
+    { name: 'imageLogo', maxCount: 1 },
+    { name: 'imageFirma', maxCount: 1 }
+  ]), docRecetaController.uploadImage);
 
 // Ruta para obtener el documento
-router.get('/', docRecetaController.getRecetario);
-//router.get("/pacientes/:id/ficha/recetario/", documentoController.getDocumento);
+router.get('/pacientes/:id/ficha/recetario', docRecetaController.getRecetario);
 
 module.exports = router;
