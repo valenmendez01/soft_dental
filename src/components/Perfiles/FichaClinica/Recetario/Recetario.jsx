@@ -2,10 +2,16 @@ import { Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDi
 import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 import PDF from "./PDF";
 import TextInput from "./TextInput";
-import FileUpload from "./FileUpload";
+import { useState } from "react";
 
 const Recetario = () => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+
+  const [formData, setFormData] = useState({
+    prescripcion: "",
+    diagnostico: "",
+    fecha: null,
+  });
 
   return (
     <div className="container ml-3 mt-4">
@@ -21,13 +27,13 @@ const Recetario = () => {
                 <div className="w-full flex flex-col gap-4">
                 <div style={{ width: "100%", height: "600px", marginTop: "20px" }}>
                   <PDFViewer style={{ width: "100%", height: "100%" }}>
-                    <PDF />
+                    <PDF formData={formData}/>
                   </PDFViewer>
                 </div>
                 </div>
               </ModalBody>
               <ModalFooter>
-                <PDFDownloadLink document={<PDF />} fileName="recetario.pdf">
+                <PDFDownloadLink document={<PDF formData={formData}/>} fileName="recetario.pdf">
                   {({ loading }) =>
                     loading ? (
                       <Button color="success" variant="flat" disabled>
@@ -50,9 +56,8 @@ const Recetario = () => {
       </ Modal>
       
       <h1 className="mt-2">Dirigirse a Configuración/Recetario para modificar las opciones predeterminadas de la plantilla del odontólogo</h1>
-      <TextInput />
+      <TextInput formData={formData} setFormData={setFormData}/>
       <Button className="mt-7" color="success" variant="flat" onPress={onOpen}>Crear receta</Button>
-      <FileUpload />
     </div>
   );
 };
