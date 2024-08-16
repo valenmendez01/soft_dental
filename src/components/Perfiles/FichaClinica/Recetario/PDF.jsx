@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     borderBottom: 1,
     paddingBottom: 5,
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   subtitle: {
     display: "flex",
@@ -129,14 +133,18 @@ const PDF = ({ formData }) => {
     <Document>
       <Page size="A5" style={styles.page}>
         <View style={styles.title}>
-          <Text style={styles.text}>{data.nombre || "Nombre del Odontólogo"}</Text>
-          <Text style={styles.text}>ODONTÓLOGA</Text>
-          <Text style={styles.text}>Matricula Prov.: {data.matricula || "N/A"}</Text>
-          <Image 
-              style={styles.signatureImage} 
-              src={`http://localhost:3001/uploads/logo/${data.logo}`}
-              alt="Logo"
+          <View style={{ alignItems: "flex-start" }}>
+            <Image 
+                style={styles.signatureImage} 
+                src={`http://localhost:3001/uploads/logo/${data.logo}`}
+                alt="Logo"
             />
+          </View>
+          <View style={{ alignItems: "center" }}>
+            <Text style={styles.text}>{data.nombre || "Nombre del Odontólogo"}</Text>
+            <Text style={styles.text}>ODONTÓLOGA</Text>
+            <Text style={styles.text}>Matricula Prov.: {data.matricula || "N/A"}</Text>
+          </View>
         </View>
         <View style={styles.subtitle}>
           <Text>Paciente: {data.paciente || "N/A"}</Text>

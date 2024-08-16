@@ -1,5 +1,5 @@
 import { Menu } from "antd";
-import { CalendarOutlined, BarsOutlined, UsergroupAddOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
+import { CalendarOutlined, UsergroupAddOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons';
 import { Link, useLocation } from "react-router-dom";
 import Logo from "./Logo";
 
@@ -14,39 +14,24 @@ const MenuList = ({ onSelect, collapsed }) => {
       label: <Link to="/agenda" className="nav-link">Agenda</Link>,
     },
     {
-      key: 'tareas',
-      icon: <BarsOutlined />,
-      label: 'Tareas',
+      key: 'odontologos',
+      icon: <UserOutlined />,
+      label: 'Odontólogos',
       children: [
         {
-          key: 'tarea-1',
-          label: 'Tarea 1',
+          key: 'odt1',
+          label: 'Odontólogo 1',
         },
         {
-          key: 'tarea-2',
-          label: 'Tarea 2',
-        },
-        {
-          key: 'subtarea',
-          label: 'Subtarea',
-          children: [
-            {
-              key: 'subtarea-1',
-              label: 'Subtarea 1',
-            },
-          ],
-        },
+          key: 'odt2',
+          label: 'Odontólogo 2',
+        }
       ],
     },
     {
       key: 'pacientes',
       icon: <UsergroupAddOutlined />,
       label: <Link to="/pacientes" className="nav-link">Pacientes</Link>,
-    },
-    {
-      key: 'odontologos',
-      icon: <UserOutlined />,
-      label: 'Odontólogos',
     },
     {
       key: 'configuracion',
@@ -59,12 +44,10 @@ const MenuList = ({ onSelect, collapsed }) => {
   let defaultSelectedKey = 'agenda';
   if (location.pathname === '/agenda') {
     defaultSelectedKey = 'agenda';
-  } else if (location.pathname.startsWith('/tareas')) {
-    defaultSelectedKey = 'tareas';
-  } else if (location.pathname.startsWith('/pacientes')) {
-    defaultSelectedKey = 'pacientes';
   } else if (location.pathname.startsWith('/odontologos')) {
     defaultSelectedKey = 'odontologos';
+  } else if (location.pathname.startsWith('/pacientes')) {
+    defaultSelectedKey = 'pacientes';
   } else if (location.pathname.startsWith('/configuracion')) {
     defaultSelectedKey = 'configuracion';
   }
