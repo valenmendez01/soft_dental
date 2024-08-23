@@ -51,3 +51,9 @@
   font-size: 1rem;
   position: relative;
 }
+
+.custom-footer-border {
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #fff;
+}

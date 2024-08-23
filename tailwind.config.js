@@ -31,6 +31,9 @@ export default {
       },
       gridTemplateColumns: {
         "1/5": "1fr 5fr"
+      },
+      colors: {
+        'custom-blue': '#001529',
       }
     },
   },

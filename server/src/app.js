@@ -10,11 +10,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use("/", docRecetaRoutes);
 app.use("/pacientes", pacienteRoutes);
 
-app.use(express.urlencoded({ extended: true }));
 
 // Servir archivos estáticos desde la carpeta 'uploads'
 app.use('/uploads/logo', express.static('uploads/logo'));

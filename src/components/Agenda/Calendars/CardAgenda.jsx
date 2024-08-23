@@ -5,13 +5,13 @@ import { Outlet } from 'react-router-dom';
 
 const CardAgenda = () => {
   return (
-    <div className='container-fluid p-5 vh-100'>
-      <Card className="max-w-[100%]">
+    <div className='flex flex-col min-h-screen p-5'>
+      <Card className="flex-1 max-w-full">
         <CardHeader>
           <Navbar_agenda />
         </CardHeader>
         <Divider/>
-        <CardBody>
+        <CardBody className="overflow-auto">
           <Outlet /> {/* renderiza subrutas de Routers */}
         </CardBody>
         <Divider/>

@@ -4,11 +4,11 @@ const db = require('../db/connection');
 
 // Insertar datos desde el formulario del front
 const createPaciente = (req, res) => {
-  const { nombre, apellido, nacimiento, sexo, dni, celular } = req.body;
+  const { nombre, apellido, dni } = req.body;
 
   // Query para hacer el envio de los datos a las const anteriores:
-  db.query('INSERT INTO registro_pacientes(nombre,apellido,nacimiento,sexo,dni,celular) VALUES(?,?,?,?,?,?)', 
-    [nombre, apellido, nacimiento, sexo, dni, celular],
+  db.query('INSERT INTO registro_pacientes(nombre,apellido,dni) VALUES(?,?,?)', 
+    [nombre, apellido, dni],
     (err, result) => {
       if (err) {
         console.log(err);
@@ -54,10 +54,11 @@ const getPacienteById = (req, res) => {
 
 // Actualizar datos de un paciente
 const updatePaciente = (req, res) => {
-  const { id, nombre, edad, dni, estado } = req.body;
+  const { id } = req.params;
+  const { nombre, apellido, dni } = req.body;
 
-  db.query('UPDATE registro_pacientes SET nombre=?,edad=?,dni=?,estado=? WHERE id=?', 
-    [nombre, edad, dni, estado, id],
+  db.query('UPDATE registro_pacientes SET nombre=?,apellido=?,dni=? WHERE id=?', 
+    [nombre, apellido, dni, id],
     (err, result) => {
       if (err) {
         console.log(err);

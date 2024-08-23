@@ -21,15 +21,15 @@ const Perfil = () => {
   if (!patient) return <div>Cargando...</div>;
 
   return (
-    <div className='container-fluid p-5 vh-100'>
+    <div className='flex flex-col min-h-screen p-5'>
       <PerfilProvider>
-      <Card className="max-w-[100%]">
+      <Card className="flex-1 max-w-full">
         <CardHeader className="justify-between">
           <Header_perfil />
           <MiniCardAtencion />
         </CardHeader>
         <Divider/>
-        <CardBody>
+        <CardBody className="overflow-auto">
           <Navbar_perfil />
           <Outlet /> {/* renderiza subrutas de Routers */}
         </CardBody>

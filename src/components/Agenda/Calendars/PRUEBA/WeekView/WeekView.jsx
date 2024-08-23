@@ -66,83 +66,78 @@ function WeekView() {
   }
 
   return (
-    <div className="isolate flex flex-auto flex-col overflow-auto bg-white">
-      <div className="flex max-w-full flex-none flex-col sm:max-w-none md:max-w-full">
-        <div className="sticky top-0 z-30 flex-none bg-white shadow ring-1 ring-black ring-opacity-5 sm:pr-8">
-          <div className="-mr-px hidden grid-cols-7 divide-x divide-gray-100 border-r border-gray-100 text-sm leading-6 text-gray-500 sm:grid">
-            <div className="col-end-1 w-14"></div>
-            {weekDays.map((day, index) => (
-              <div key={index} className="flex items-center justify-center py-3">
-                <div>{day.format("ddd")}</div>
-                <span className={`items-center justify-center font-semibold text-gray-900 ml-1.5 ${getCurrentDayClass(day)}`}>
-                  {day.format("DD")}
-                </span>
-              </div>
-            ))}
-          </div>
+    <div className="isolate flex flex-col overflow-hidden bg-white h-screen">
+      <div className="sticky top-0 z-30 flex-none bg-white shadow ring-1 ring-black ring-opacity-5 sm:pr-8 ">
+        <div className="-mr-px hidden grid-cols-7 divide-x divide-gray-100 border-r border-gray-100 text-sm leading-6 text-gray-500 sm:grid">
+          <div className="col-end-1 w-14"></div>
+          {weekDays.map((day, index) => (
+            <div key={index} className="flex items-center justify-center py-4 h-16">
+              <div>{day.format("ddd")}</div>
+              <span className={`items-center justify-center font-semibold text-gray-900 ml-1.5 ${getCurrentDayClass(day)}`}>
+                {day.format("DD")}
+              </span>
+            </div>
+          ))}
         </div>
-        <div className="flex flex-auto">
-          <div className="sticky left-0 z-10 w-14 flex-none bg-white ring-1 ring-gray-100"></div>
-          <div className="grid flex-auto grid-cols-1 grid-rows-1">
+      </div>
+      <div className="flex flex-auto overflow-auto" style={{ height: 'calc(100vh - 4rem)' }}> {/* Ajusta la altura según sea necesario */}
+        <div className="sticky left-0 z-10 w-14 flex-none bg-white ring-1 ring-gray-100"></div>
+        <div className="grid flex-auto grid-cols-1 grid-rows-1">
           <div className="row-end-1 h-7"></div>
-            {/* Horizontal lines */}
-            <div className="col-start-1 col-end-2 row-start-1 grid divide-y divide-gray-100">
-              <div className="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">
-                {intervals.map((time, index) => (
-                  <div key={index} className="p-2">
-                    {time}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Vertical lines */}
-            <div className="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-gray-100 sm:grid sm:grid-cols-7">
-              <div className="col-start-1 row-span-full"></div>
-              <div className="col-start-2 row-span-full"></div>
-              <div className="col-start-3 row-span-full"></div>
-              <div className="col-start-4 row-span-full"></div>
-              <div className="col-start-5 row-span-full"></div>
-              <div className="col-start-6 row-span-full"></div>
-              <div className="col-start-7 row-span-full"></div>
-              <div className="col-start-8 row-span-full w-8"></div>
-            </div>
-
-            {/* Events */}
-            <ol 
-              className="col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:pr-8"
-              style={{ gridTemplateRows: 'repeat(48, minmax(3.5rem, 1fr))' }}
-            >
-              {weekDays.map((day) => (
-                  eventsByDay[day.format("DD-MM-YY")]?.map((event, eventIndex) => {
-                    const startTime = dayjs(event.startTime);
-                    const endTime = dayjs(event.endTime);
-
-                    // Calcula el col-start para el día de la semana
-                    const colStart = weekDays.findIndex(d => d.isSame(day, 'day')) + 1;
-
-                    // Console log para verificar
-                    console.log(`Day: ${day.format('DD-MM-YY')}, Col Start: ${colStart}`);
-                    return (
-                      <li key={eventIndex} className="relative mt-px flex" style={{ gridRow: getGridRow(startTime, endTime), gridColumn: `${colStart} / span 1` }}>
-                        <a
-                          className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100"
-                          onClick={() => {
-                            setSelectedEvent(event);
-                            setShowEventModal(true);
-                          }}
-                        >
-                          <p className="order-1 font-semibold text-blue-700">{event.title}</p>
-                          <p className="text-blue-500 group-hover:text-blue-700">
-                            <time dateTime={event.startTime}>{dayjs(event.startTime).format('h:mm A')}</time> - <time dateTime={event.endTime}>{dayjs(event.endTime).format('h:mm A')}</time>
-                          </p>
-                        </a>
-                      </li>
-                    );
-                  })
+          {/* Horizontal lines */}
+          <div className="col-start-1 col-end-2 row-start-1 grid divide-y divide-gray-100">
+            <div className="sticky left-0 z-20 -ml-14 -mt-2.5 w-14 pr-2 text-right text-xs leading-5 text-gray-400">
+              {intervals.map((time, index) => (
+                <div key={index} className="p-2">
+                  {time}
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
+
+          {/* Vertical lines */}
+          <div className="col-start-1 col-end-2 row-start-1 hidden grid-cols-7 grid-rows-1 divide-x divide-gray-100 sm:grid sm:grid-cols-7">
+            <div className="col-start-1 row-span-full"></div>
+            <div className="col-start-2 row-span-full"></div>
+            <div className="col-start-3 row-span-full"></div>
+            <div className="col-start-4 row-span-full"></div>
+            <div className="col-start-5 row-span-full"></div>
+            <div className="col-start-6 row-span-full"></div>
+            <div className="col-start-7 row-span-full"></div>
+            <div className="col-start-8 row-span-full w-8"></div>
+          </div>
+
+          {/* Events */}
+          <ol 
+            className="col-start-1 col-end-2 row-start-1 grid grid-cols-1 sm:grid-cols-7 sm:pr-8"
+            style={{ gridTemplateRows: 'repeat(48, minmax(3.5rem, 1fr))' }}
+          >
+            {weekDays.map((day) => (
+                eventsByDay[day.format("DD-MM-YY")]?.map((event, eventIndex) => {
+                  const startTime = dayjs(event.startTime);
+                  const endTime = dayjs(event.endTime);
+
+                  const colStart = weekDays.findIndex(d => d.isSame(day, 'day')) + 1;
+
+                  return (
+                    <li key={eventIndex} className="relative mt-px flex" style={{ gridRow: getGridRow(startTime, endTime), gridColumn: `${colStart} / span 1` }}>
+                      <a
+                        className="group absolute inset-1 flex flex-col overflow-y-auto rounded-lg bg-blue-50 p-2 text-xs leading-5 hover:bg-blue-100"
+                        onClick={() => {
+                          setSelectedEvent(event);
+                          setShowEventModal(true);
+                        }}
+                      >
+                        <p className="order-1 font-semibold text-blue-700">{event.title}</p>
+                        <p className="text-blue-500 group-hover:text-blue-700">
+                          <time dateTime={event.startTime}>{dayjs(event.startTime).format('h:mm A')}</time> - <time dateTime={event.endTime}>{dayjs(event.endTime).format('h:mm A')}</time>
+                        </p>
+                      </a>
+                    </li>
+                  );
+                })
+            ))}
+          </ol>
         </div>
       </div>
     </div>

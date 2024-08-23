@@ -16,15 +16,14 @@ const CardCuenta = () => {
       });
   };
   return (
-    <div className="w-full mt-4 px-4">
-      <Card className="max-w-[100%]">
+      <Card className="flex-1 max-w-full">
         <CardHeader className="flex justify-between mt-2">
           <div>
             <p className="text-2xl m-2">Cuenta</p>
           </div>
         </CardHeader>
         <Divider/>
-        <CardBody className="d-flex justify-content-center align-items-left">
+        <CardBody className="overflow-auto d-flex justify-content-center align-items-left">
           <div>
             <Button onClick={handleSignOut} style={{ marginLeft: '10px' }} color="danger" variant="flat">Cerrar Sesión</Button>
           </div>
@@ -33,7 +32,6 @@ const CardCuenta = () => {
         <CardFooter>
         </CardFooter>
       </Card>
-    </div>
   )
 }
 
