@@ -9,7 +9,9 @@ router.post("/create", pacienteController.createPaciente);
 router.get("/", pacienteController.getPacientes);
 router.get("/:id", pacienteController.getPacienteById);
 router.put("/:id/update", pacienteController.updatePaciente);
-// router.put("/:id/actualizar", datosPersonalesController.actualizarPaciente);
+
+router.get("/:id/datos-personales", datosPersonalesController.getDatosPersonales);
+router.put("/:id/actualizar-datos-personales", datosPersonalesController.actualizarDatosPersonales);
 router.post("/:id/crear", datosPersonalesController.crearPaciente);
 router.delete("/delete/:id", pacienteController.deletePaciente);
 
