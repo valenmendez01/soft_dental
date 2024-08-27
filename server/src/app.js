@@ -5,6 +5,7 @@ const express = require("express");
 const cors = require("cors");
 const pacienteRoutes = require('./routes/pacienteRoutes');
 const docRecetaRoutes = require('./routes/docRecetaRoutes');
+const datosPersonalesRoutes = require('./routes/datosPersonalesRoutes');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/", docRecetaRoutes);
 app.use("/pacientes", pacienteRoutes);
+app.use("/pacientes", datosPersonalesRoutes);
 
 
 // Servir archivos estáticos desde la carpeta 'uploads'

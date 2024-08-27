@@ -70,8 +70,27 @@ const getDatosPersonales = (req, res) => {
     );
   };
 
+  // Verificar si existen datos personales para un paciente específico
+  const verificarDatosPersonales = (req, res) => {
+    const { id }= req.params;
+
+    db.query('SELECT COUNT(*) AS count FROM datos_personales WHERE paciente_id = ?',
+      [id], 
+      (err, result) => {
+      if (err) {
+        return res.status(500).json({ err: 'Error en la base de datos' });
+        }
+
+      const existe = result[0].count > 0;
+
+      res.json({ existenDatos: existe });
+      }
+    );
+  };
+
 module.exports = {
   actualizarDatosPersonales,
   crearPaciente,
-  getDatosPersonales
+  getDatosPersonales,
+  verificarDatosPersonales
 };
