@@ -56,24 +56,34 @@ const DatosPersonales = () => {
   }
   // Cargar los datos iniciales
   const getDatosPersonales = () => {
-    axios.get(`http://localhost:3001/pacientes/${id}/datos-personales`)
+    // Verificar si todos los campos están vacíos
+    axios.get(`http://localhost:3001/pacientes/${id}/datos-personales/existen`)
       .then(res => {
-        if (res.data.length > 0) {  // Si los datos ya existen
-          setFecha(res.data[0].fecha || null);
-          setSexo(res.data[0].sexo || "");
-          setCelular(res.data[0].celular || null);
-          setDireccion(res.data[0].direccion || "");
-          setCp(res.data[0].cp || "");
-          setLocalidad(res.data[0].localidad || "");
-          setCivil(res.data[0].civil || "");
-          setOcupacion(res.data[0].ocupacion || "");
-          setEmail(res.data[0].email || "");
-          setObrasocial(res.data[0].obrasocial || "");
-          setNumeroOs(res.data[0].numeroOs || null);
+        if (res.data.existenDatos) { // Si los datos ya existen, actualiza
+          axios.get(`http://localhost:3001/pacientes/${id}/datos-personales`)
+            .then(res => {
+              if (res.data.length > 0) {
+                setFecha(res.data[0].fecha || null);
+                setSexo(res.data[0].sexo || "");
+                setCelular(res.data[0].celular || null);
+                setDireccion(res.data[0].direccion || "");
+                setCp(res.data[0].cp || "");
+                setLocalidad(res.data[0].localidad || "");
+                setCivil(res.data[0].civil || "");
+                setOcupacion(res.data[0].ocupacion || "");
+                setEmail(res.data[0].email || "");
+                setObrasocial(res.data[0].obrasocial || "");
+                setNumeroOs(res.data[0].numeroOs || null);
+              }
+            })
+            .catch(err => console.log("Error fetching data:", err));
+        } else { // Si los datos no existen, crea nuevos
+          console.log("Todos los campos están vacíos, no se realizará la petición.");
+          return;
         }
       })
-      .catch(err => console.log("Error fetching data:", err));
-  };
+      .catch(err => console.log("Error verifying data:", err));
+    }
 
   const guardarDatosPersonales = () => {
     axios.get(`http://localhost:3001/pacientes/${id}/datos-personales/existen`)
