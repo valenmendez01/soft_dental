@@ -6,7 +6,6 @@ import {Card, CardHeader, CardBody, CardFooter, Divider } from "@nextui-org/reac
 import Navbar_perfil from "./Navbar_perfil"
 import Header_perfil from './Header_perfil';
 import MiniCardAtencion from './MiniCardAtencion';
-import { PerfilProvider } from './context/PerfilContext';
 
 const Perfil = () => {
   const { id } = useParams();
@@ -22,7 +21,6 @@ const Perfil = () => {
 
   return (
     <div className='flex flex-col min-h-screen p-5'>
-      <PerfilProvider>
       <Card className="flex-1 max-w-full">
         <CardHeader className="justify-between">
           <Header_perfil />
@@ -37,7 +35,6 @@ const Perfil = () => {
         <CardFooter>
         </CardFooter>
       </Card>
-      </PerfilProvider>
     </div>
   );
 };
